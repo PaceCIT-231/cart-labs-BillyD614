@@ -1,0 +1,2 @@
+let formFields = new URLSearchParams(window.location.search)
+document.getElementById("customresponse").innerHTML = `Thank you for purchasing ${formFields.get("name")}! We look forward to serving you in the future!`

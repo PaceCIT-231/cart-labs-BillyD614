@@ -6,17 +6,19 @@
     <title>Cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/modal.css">
     <script src="assets/scripts.js" async></script>
 </head>
 
 <body>
     <header>
+        <button id="darkmode" onclick="darkMode()">Dark Mode</button>
         <h1>All the Nice Things</h1>
         <div id="cart">
             <img src="assets/imgs/cart.png">
             <span class="hoverText">$0</span>
             <p id="cartItems">&nbsp;</p>
-            <button id="checkout">Checkout Now</button>
+            <button id="checkout" onclick="checkout()">Checkout Now</button>
         </div>
     </header>
     <main>
@@ -27,31 +29,68 @@
             <h3>Peanut Butter</h3>
             <p>Peanut butter cookies are rich and gooey.</p>
             <p>$20</p>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('peanut butter')">Add to Cart</button>
         </section>
         <section class="tile">
             <img src="assets/imgs/sandies.jpg">
             <h3>Sandies</h3>
             <p>Sandies are sweet and light.</p>
             <p>$30</p>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('sandies')">Add to Cart</button>
         </section>
         <section class="tile">
             <img src="assets/imgs/partypress.jpg">
             <h3>Party Press</h3>
             <p>Parties Press cookies are decorative and tasty.</p>
             <p>$35</p>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('party press')">Add to Cart</button>
         </section>
         <section class="tile">
             <img src="assets/imgs/chocolatechip.jpg">
             <h3>Chocolate Chip</h3>
             <p></p>Chocolate chip cookies with walnuts are soft and chocolatey.</p>
             <p>$25</p>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('chocolate chip')">Add to Cart</button>
         </section>
     </div>
+    <button id="clearcart" onclick="clearCart()">Clear Cart</button>
     </main>
+<!-- The Modal -->
+<div id="summary" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="closeSummary" class="close">&times;</span>
+            <h2>Checkout Summary</h2>
+        </div>
+        <div class="container">
+            <div id="summary-body" class="modal-body">
+                
+            </div>
+            <div class="modal-body">
+                <form name="finishCheckout" id="finalizeCheckout" action="thankyou.html" method="get">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" required><br>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required><br>
+                    <input type="submit" name="submit" value="Submit">
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let modal = document.getElementById('summary')
+        let close = document.getElementById('closeSummary')
+        function hideSummary() {
+            modal.style.display = 'none'
+        }
+        close.onclick = hideSummary
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>
 </body>
-
-</html>
